@@ -4,8 +4,7 @@ import com.mongoExample.mongoDemo.controller.rq.HumineralPostRq;
 import com.mongoExample.mongoDemo.controller.rq.HumineralUpdateRq;
 import com.mongoExample.mongoDemo.controller.rs.Humineral;
 import com.mongoExample.mongoDemo.service.HumineralService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -16,68 +15,79 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/v1/huminerals")
-@Tag(name = "Humineral Operation APIs", description = "API collection for CRUD operations on Humineral")
+//@Tag(name = "Humineral Operation APIs", description = "API collection for CRUD operations on Humineral")
 public class HumineralController {
 
     private final HumineralService humineralService;
 
-    @Operation(
-            summary = "Create a new Humineral",
-            description = "{\n\n" +
+    @ApiOperation(
+            value = "Create a new Humineral",
+            notes = "{\n\n" +
                     "  \"name\": \"Jess\",\n\n" +
                     "  \"description\": \"soooooo lame\",\n\n" +
                     "  \"father\": \"Chen\",\n\n" +
                     "  \"mother\": \"Yang\",\n\n" +
                     "  \"nationality\": \"TW\",\n\n" +
                     "  \"socialCreditScore\": 100\n\n" +
-                    "}",
-            tags = "Humineral Operation APIs"
+                    "}"
     )
     @PostMapping
     public Humineral createNew(@RequestBody HumineralPostRq postRq) {
         return humineralService.createNewHumineral(postRq);
     }
 
+    @ApiOperation(value = "Update Humineral Information")
     @PutMapping
     public Humineral updateHumineral(@RequestBody HumineralUpdateRq updateRq) {
         return humineralService.updateHumineral(updateRq);
     }
 
+    @ApiOperation(value = "Delete a Humineral")
     @DeleteMapping
     public Boolean deleteHumineral(@RequestParam String humineralId) {
         return humineralService.deleteById(humineralId);
     }
 
+    @ApiOperation(value = "Get Humineral by Id")
     @GetMapping("/getById")
     public Humineral getById(@RequestParam String humineralId) {
         return humineralService.getById(humineralId);
     }
 
+    @ApiOperation(value = "Get Humineral by Name")
     @GetMapping("/getByName")
     public List<Humineral> getByName(@RequestParam String name) {
         return humineralService.getByName(name);
     }
 
+    @ApiOperation(value = "Get Humineral by Father's name")
     @GetMapping("/getByFather")
     public List<Humineral> getByFather(@RequestParam String father) {
         return humineralService.getByFather(father);
     }
 
+    @ApiOperation(value = "Get Humineral by Mother's name")
     @GetMapping("/getByMother")
     public List<Humineral> getByMother(@RequestParam String mother) {
         return humineralService.getByMother(mother);
     }
 
+
+    @ApiOperation(value = "Get Humineral by Nationality")
     @GetMapping("/getByNationality")
     public List<Humineral> getByNationality(@RequestParam String nationality) {
         return humineralService.getByNationality(nationality);
     }
 
+    @ApiOperation(
+            value = "Get Humineral by Social Credit Score"
+    )
     @GetMapping("/getBySocialCreditScore")
     public List<Humineral> getBySocialCreditScore(@RequestParam int score) {
         return humineralService.getBySocialCreditScore(score);
     }
 
+    @ApiOperation(value = "Get all Humineral")
     @GetMapping("/getAll")
     public List<Humineral> getAll() {
         return humineralService.getAll();
