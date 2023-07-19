@@ -24,12 +24,12 @@ public class HumineralController {
     @ApiOperation(
             value = "Create a new Humineral",
             notes = "{\n" +
-                    "  \"name\": \"Jess\",\n" +
-                    "  \"description\": \"soooooo lame\",\n" +
-                    "  \"father\": \"Chen\",\n" +
-                    "  \"mother\": \"Yang\",\n" +
-                    "  \"nationality\": \"TW\",\n" +
-                    "  \"socialCreditScore\": 100\n" +
+                    "&nbsp;&nbsp;\"name\": \"Jess\",\n" +
+                    "&nbsp;&nbsp;\"description\": \"soooooo lame\",\n" +
+                    "&nbsp;&nbsp;\"father\": \"Chen\",\n" +
+                    "&nbsp;&nbsp;\"mother\": \"Yang\",\n" +
+                    "&nbsp;&nbsp;\"nationality\": \"TW\",\n" +
+                    "&nbsp;&nbsp;\"socialCreditScore\": 100\n" +
                     "}"
     )
     @PostMapping
