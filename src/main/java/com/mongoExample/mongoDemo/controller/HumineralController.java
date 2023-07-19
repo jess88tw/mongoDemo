@@ -4,6 +4,7 @@ import com.mongoExample.mongoDemo.controller.rq.HumineralPostRq;
 import com.mongoExample.mongoDemo.controller.rq.HumineralUpdateRq;
 import com.mongoExample.mongoDemo.controller.rs.Humineral;
 import com.mongoExample.mongoDemo.service.HumineralService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,20 +16,20 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/v1/huminerals")
-//@Tag(name = "Humineral Operation APIs", description = "API collection for CRUD operations on Humineral")
+@Api(tags = "Humineral Operation APIs")
 public class HumineralController {
 
     private final HumineralService humineralService;
 
     @ApiOperation(
             value = "Create a new Humineral",
-            notes = "{\n\n" +
-                    "  \"name\": \"Jess\",\n\n" +
-                    "  \"description\": \"soooooo lame\",\n\n" +
-                    "  \"father\": \"Chen\",\n\n" +
-                    "  \"mother\": \"Yang\",\n\n" +
-                    "  \"nationality\": \"TW\",\n\n" +
-                    "  \"socialCreditScore\": 100\n\n" +
+            notes = "{\n" +
+                    "  \"name\": \"Jess\",\n" +
+                    "  \"description\": \"soooooo lame\",\n" +
+                    "  \"father\": \"Chen\",\n" +
+                    "  \"mother\": \"Yang\",\n" +
+                    "  \"nationality\": \"TW\",\n" +
+                    "  \"socialCreditScore\": 100\n" +
                     "}"
     )
     @PostMapping
@@ -79,9 +80,7 @@ public class HumineralController {
         return humineralService.getByNationality(nationality);
     }
 
-    @ApiOperation(
-            value = "Get Humineral by Social Credit Score"
-    )
+    @ApiOperation(value = "Get Humineral by Social Credit Score")
     @GetMapping("/getBySocialCreditScore")
     public List<Humineral> getBySocialCreditScore(@RequestParam int score) {
         return humineralService.getBySocialCreditScore(score);
