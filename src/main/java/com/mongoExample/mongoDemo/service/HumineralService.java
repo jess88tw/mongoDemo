@@ -27,4 +27,6 @@ public interface HumineralService {
     List<Humineral> getBySocialCreditScore(int score);
 
     List<Humineral> getAll();
+
+    List<Humineral> getBySocialCreditScoreAndNationality(int score, String nationality);
 }

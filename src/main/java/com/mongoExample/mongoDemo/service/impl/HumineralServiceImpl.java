@@ -7,6 +7,9 @@ import com.mongoExample.mongoDemo.repository.HumineralRepository;
 import com.mongoExample.mongoDemo.service.HumineralService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,6 +22,7 @@ import java.util.Optional;
 public class HumineralServiceImpl implements HumineralService {
 
     private final HumineralRepository humineralRepository;
+    private final MongoTemplate mongoTemplate;
 
     @Override
     public Humineral createNewHumineral(HumineralPostRq postRq) {
@@ -96,5 +100,14 @@ public class HumineralServiceImpl implements HumineralService {
     @Override
     public List<Humineral> getAll() {
         return humineralRepository.findAll();
+    }
+
+    @Override
+    public List<Humineral> getBySocialCreditScoreAndNationality(int score, String nationality) {
+        Criteria criteria = Criteria.where("socialCreditScore").gte(score).and("nationality").is(nationality);
+        return mongoTemplate.find(
+            Query.query(criteria),
+            Humineral.class
+        );
     }
 }
