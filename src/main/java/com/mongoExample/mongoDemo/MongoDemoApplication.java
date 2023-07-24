@@ -33,7 +33,7 @@ public class MongoDemoApplication {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("Huminerals API collection")
-				.version("2.0.1")
+				.version("2.0.2")
 				.description("Huminerals APIs for huminerals operations")
 				.contact(new Contact("Jess Chen", "https://www.jesseedgerunner.com/", "jazz88tw@gmail.com"))
 				.build();

@@ -12,10 +12,12 @@
 
 ### Upcoming features
 
-- BasicDBObject
-- BasicDBList
+- [x] ~~BasicDBObject~~ 過時方法
+- [x] ~~BasicDBList~~ 過時方法
+- [x] Criteria
 
 ### Change History
 
 - V1.0.1: 使用 Spring Boot 3.1.1 & Swagger3
 - V2.0.1: 改為使用 Spring Boot 2.3.1.RELEASE & Swagger2
+- v2.0.2: 新增使用 MongoTemplate 的進階查詢方法
