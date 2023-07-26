@@ -15,6 +15,7 @@
 - [x] ~~BasicDBObject~~ 過時方法
 - [x] ~~BasicDBList~~ 過時方法
 - [x] Criteria
+- [ ] 需要確定是否可以達成在 runtime 時才決定 endpoint
 
 ### Change History
 
