@@ -1,6 +1,8 @@
 package com.mongoExample.mongoDemo.repository;
 
 import com.mongoExample.mongoDemo.controller.rs.Humineral;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +20,6 @@ public interface HumineralRepository extends MongoRepository<Humineral, String> 
     List<Humineral> findByNationality(String nationality);
 
     List<Humineral> findBySocialCreditScore(int score);
+
+    Page<Humineral> findAll(Pageable pageable);
 }

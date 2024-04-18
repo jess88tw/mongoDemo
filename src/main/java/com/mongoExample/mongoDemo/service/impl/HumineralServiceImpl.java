@@ -7,7 +7,13 @@ import com.mongoExample.mongoDemo.repository.HumineralRepository;
 import com.mongoExample.mongoDemo.service.HumineralService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -15,6 +21,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @Service
 @RequiredArgsConstructor
@@ -104,10 +113,15 @@ public class HumineralServiceImpl implements HumineralService {
 
     @Override
     public List<Humineral> getBySocialCreditScoreAndNationality(int score, String nationality) {
-        Criteria criteria = Criteria.where("socialCreditScore").gte(score).and("nationality").is(nationality);
+        Criteria criteria = where("socialCreditScore").gte(score).and("nationality").is(nationality);
         return mongoTemplate.find(
             Query.query(criteria),
             Humineral.class
         );
+    }
+
+    @Override
+    public Page<Humineral> getAllPages(Pageable pageable) {
+        return humineralRepository.findAll(pageable);
     }
 }

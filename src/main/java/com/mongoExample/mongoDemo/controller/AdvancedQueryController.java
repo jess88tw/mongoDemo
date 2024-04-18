@@ -6,6 +6,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,5 +35,18 @@ public class AdvancedQueryController {
             @RequestParam String nationality
     ) {
         return humineralService.getBySocialCreditScoreAndNationality(score, nationality);
+    }
+
+    @ApiOperation(
+            value = "Get All Page of Humineral",
+            notes = "Pageable Test"
+    )
+    @GetMapping("/getAllPages")
+    public Page<Humineral> getAllPages(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "2") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return humineralService.getAllPages(pageable);
     }
 }

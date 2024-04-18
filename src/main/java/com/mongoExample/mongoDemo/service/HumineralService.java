@@ -3,6 +3,8 @@ package com.mongoExample.mongoDemo.service;
 import com.mongoExample.mongoDemo.controller.rq.HumineralPostRq;
 import com.mongoExample.mongoDemo.controller.rq.HumineralUpdateRq;
 import com.mongoExample.mongoDemo.controller.rs.Humineral;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -29,4 +31,6 @@ public interface HumineralService {
     List<Humineral> getAll();
 
     List<Humineral> getBySocialCreditScoreAndNationality(int score, String nationality);
+
+    Page<Humineral> getAllPages(Pageable pageable);
 }
